@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wish list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+
+<h1>Wish List</h1>
+<div class="card">
+    <div class="card-content">
+      <span class="card-title"></span>
+      <form action="" method="post" class="pure-form">   
+      {% if items|length == 0 %}
+      
+      <p>There are no Items in wishlist</p>
+       
+      {% else %}
+      {% for item in items %}
+      
+
+      <p>Description: {{ item.description }}</p>
+    
+      <a href="{% url 'item_delete' item.id %}">Delete</a></p>
+ 
+      {% endfor %}
+      {% endif %}
+    
+      <a href = "{% url 'item_create'%}">Create item</a>
+
+    </form>
+    </div>
+
+  </div>
+  <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
